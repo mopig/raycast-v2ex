@@ -14,6 +14,16 @@
       "mode": "view"
     }
   ],
+  "preferences": [
+    {
+      "name": "proxy",
+      "type": "textfield",
+      "required": false,
+      "title": "Proxy URL",
+      "description": "URL of proxy",
+      "placeholder": "URL of proxy e.g. http://127.0.0.1:7890"
+    }
+  ],
   "dependencies": {
     "@raycast/api": "^1.25.1",
     "https-proxy-agent": "^5.0.0",

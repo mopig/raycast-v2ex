@@ -1,7 +1,8 @@
 import { ActionPanel, CopyToClipboardAction, List, OpenInBrowserAction, showToast, ToastStyle } from "@raycast/api";
 import { useState, useEffect } from "react";
 import fetch from "node-fetch";
-import HttpsProxyAgent from 'https-proxy-agent'
+import { preferences } from "@raycast/api";
+import HttpsProxyAgent from "https-proxy-agent";
 
 export default function ArticleList() {
   const [state, setState] = useState<{ articles: Article[] }>({ articles: [] });
@@ -49,8 +50,9 @@ function ArticleListItem(props: { article: Article }) {
 
 async function fetchArticles(): Promise<Article[]> {
   try {
-    const proxyAgent = new HttpsProxyAgent('http://127.0.0.1:7890');
-    const response = await fetch("https://www.v2ex.com/api/topics/hot.json", { agent: proxyAgent});
+    const proxy: string = preferences.proxy?.value as string;
+    const proxyAgent = proxy ? new HttpsProxyAgent(proxy) : undefined;
+    const response = await fetch("https://www.v2ex.com/api/topics/hot.json", { agent: proxyAgent });
     const json = await response.json();
     return (json as []).map((item: any) => ({ ...item, id: String(item.id) })) as Article[];
   } catch (error) {
