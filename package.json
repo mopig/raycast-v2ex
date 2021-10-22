@@ -2,13 +2,13 @@
   "name": "v2ex",
   "title": "v2ex",
   "description": "hot list of v2ex",
-  "icon": "command-icon.png",
+  "icon": "icon-v2ex.png",
   "author": "leo",
   "license": "MIT",
   "commands": [
     {
       "name": "index",
-      "title": "Show List",
+      "title": "Show v2ex List",
       "subtitle": "",
       "description": "Template to show a list received from a networking response",
       "mode": "view"
